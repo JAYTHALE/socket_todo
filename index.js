@@ -4,6 +4,7 @@ const cors = require("cors")
 const express = require("express")
 const { app, httpServer } = require("./socket/socket")
 require("dotenv").config()
+const path = require("path")
 
 // const app = express()
 
@@ -17,7 +18,9 @@ app.use("/api/notes", require("./routes/todo.routes"))
 
 //step 3 404 router
 app.use("*", (req, res) => {
-    res.status(404).json({ message: "Resource Not Found 404" })
+    //Absulute Path
+    res.sendFile(path.join(__dirname, "dist", "index.html"))
+    // res.status(404).json({ message: "Resource Not Found 404" })
 })
 
 //step 4 error handler
