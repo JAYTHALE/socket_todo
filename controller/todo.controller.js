@@ -14,7 +14,7 @@ exports.readTodo = asyncHandler(async (req, res) => {
     res.json({ message: "readTodo Success", result })
 })
 exports.updateTodo = asyncHandler(async (req, res) => {
-    await Todo.findByIdAndUpdate(req.params.id, req.body)
+    await Todo.findByIdAndUpdate(req.params, { ...req.body, complete: true })
     res.json({ message: "updateTodo Success" })
 })
 exports.deleteTodo = asyncHandler(async (req, res) => {
